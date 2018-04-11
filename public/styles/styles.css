@@ -17,6 +17,10 @@
 {
     background-color: #00d886;  }
 
+.parallax-container {
+    height: 350px !important;
+}
+
 @keyframes panning {
     0% {
         background-position: 100% 0%;
