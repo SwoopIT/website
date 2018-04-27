@@ -24,28 +24,6 @@ app.use('/users', usersRouter);
 
 
 
-app.post('/api/order', function (req, res) { //get order
-
-});
-
-app.get('/api/orders', function (req, res) { //get all orders
-
-});
-
-app.get('/api/listings', function (req, res) { //gets all listing
-
-});
-
-app.put('/api/order', function (req, res) { //modify order, for employees only, this changes the order status field
-
-});
-
-app.delete('/api/order', function (req, res) { //mark order as canceled, ( DONT DELETE THINGS FROM DA DATABASE )
-
-});
-
-
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
