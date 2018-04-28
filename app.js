@@ -28,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+// on git push git pull
 app.post('/gitpull', function (req, res, next) {
 	try {
 		console.log('New commit by', req.body.head_commit.committer.username);
