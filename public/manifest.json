@@ -1,0 +1,23 @@
+{
+  "short_name": "SwoopIt",
+  "name": "SwoopIt",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "type": "image/png",
+      "sizes": "669x669"
+    }
+  ],
+  "prefer_related_applications": true,
+  "related_applications": [
+    {
+      "platform": "play",
+      "id": "com.swoopit.android"
+    }
+  ],
+  "background_color": "#1caeee",
+  "theme_color": "#1caeee",
+  "display": "browser",
+  "orientation": "portrait"
+
+}
