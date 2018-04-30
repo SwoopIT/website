@@ -17,7 +17,7 @@
   ],
   "background_color": "#1caeee",
   "theme_color": "#1caeee",
-  "display": "browser",
+  "display": "minimal-ui",
   "orientation": "portrait"
 
 }
