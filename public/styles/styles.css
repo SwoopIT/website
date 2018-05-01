@@ -31,3 +31,7 @@ body {
 img[data-src] {
     opacity: 0;
 }
+.active {
+    background-color: #1CAEEE !important;
+    color: #ffffff !important;
+}
