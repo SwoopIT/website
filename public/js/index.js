@@ -44,9 +44,11 @@ function checkAdmin() {
 		}
 	});
 }
-google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart);
 
+if (window.location.pathname === '/admin') {
+	google.charts.load('current', {'packages': ['corechart']});
+	google.charts.setOnLoadCallback(drawChart);
+}
 function drawChart() {
 	var data = google.visualization.arrayToDataTable([
 		['Email', 'Amount of People'],
@@ -57,8 +59,54 @@ function drawChart() {
 	var options = {
 		title: 'SwoopIt User Emails'
 	};
-
 	var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
 	chart.draw(data, options);
+}
+
+
+async function getCategories() {
+	return $.get('https://api.swoopit.xyz/web/categories');
+}
+
+async function getItems() {
+	return $.get('https://api.swoopit.xyz/web/items');
+}
+
+async function getStores() {
+	return $.get('https://api.swoopit.xyz/web/stores');
+}
+
+function addItem(name, price, category, img) {
+	console.log(name, price, category, img);
+	$.ajax({
+		method: 'post',
+		url: 'https://api.swoopit.xyz/web/item',
+		data: {
+			name: name,
+			price: price,
+			category: category,
+			img: img
+		},
+		success: function (res) {
+			if (res === '0') return M.toast({html: 'There was an error adding this item'});
+			M.toast({html: 'The Item has been successfully added!'})
+		}
+	})
+}
+
+function addCategory(name, store) {
+	console.log(name, store);
+	$.ajax({
+		method: 'post',
+		url: 'https://api.swoopit.xyz/web/category',
+		data: {
+			name: name,
+			store: store,
+		},
+		success: function (res) {
+			if (res === '0') return M.toast({html: 'There was an error adding this category'});
+			M.toast({html: 'The category has been successfully added!'})
+		}
+	})
 }

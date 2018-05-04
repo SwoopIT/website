@@ -5,7 +5,7 @@
         </ul>
         <div class="collection">
             <a href="#" class="collection-item blue-text">Admin Home</a>
-            <a href="item" class="collection-item active-col blue-text">Add Item</a>
+            <a href="item" class="collection-item active-col blue-text">Add Items</a>
             <a href="category" class="collection-item blue-text">Add Category</a>
             <a href="items" class="collection-item blue-text">Items</a>
             <a href="categories" class="collection-item blue-text">Categories</a>
@@ -21,27 +21,17 @@
                 <div class="row">
                     <div class="input-field col s6">
                         <input id="name" type="text" class="validate">
-                        <label for="name">Item Name</label>
+                        <label for="name">Category Name</label>
                     </div>
                     <div class="input-field col s6">
-                        <input id="price" type="text" class="validate">
-                        <label for="price">Item Price</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s6">
-                        <select title="Categories" id="category">
-                            <option value="" disabled selected>Select a Category and Store</option>
+                        <select title="Stores" id="store">
+                            <option value="" disabled selected>Select a Store</option>
                         </select>
-                        <label>Category and Store</label>
-                    </div>
-                    <div class="input-field col s6">
-                        <input id="image" type="url" class="validate">
-                        <label for="image">Item Image</label>
+                        <label>Store</label>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-large blue white-text"
-                        onclick="addItem($('#name').val(), $('#price').val(), $('#category').val(), $('#image').val())">
+                        onclick="addCategory($('#name').val(), $('#store').val())">
                     Submit
                 </button>
             </form>
@@ -50,7 +40,7 @@
 </div>
 
 <script>
-    var categories, items;
+    var categories, items, stores;
     var storeNames = {
         mcd: 'McDonald\'s',
         fdl: 'Foodland',
@@ -63,11 +53,9 @@
     document.addEventListener('DOMContentLoaded', async function () {
         categories = await getCategories();
         items = await getItems();
-        for (var i = 0; i < categories.length; i++) {
-            $('#category').append('<optgroup id="category-' + categories[i].store + '" label="' + storeNames[categories[i].store] + '"></optgroup>');
-        }
-        for (i = 0; i < categories.length; i++) {
-            $('#category-' + categories[i].store).append('<option value="' + categories[i].id + '">' + categories[i].name + '</option>');
+        stores = await getStores();
+        for (i = 0; i < stores.length; i++) {
+            $('#store').append('<option value="' + stores[i].code + '">' + stores[i].name + '</option>');
         }
         var elems = document.querySelectorAll('select');
         var instances = M.FormSelect.init(elems);

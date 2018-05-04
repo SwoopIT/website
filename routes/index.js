@@ -16,9 +16,15 @@ router.get('/blacklist', function (req, res, next) {
 	res.render('blacklist', {title: 'Blacklist User'});
 });
 router.get('/items', function (req, res, next) {
-	res.render('items', {title: 'Remove Items'});
+	res.render('items', {title: 'Items'});
 });
 router.get('/login', function (req, res, next) {
 	res.render('login', {title: 'Login'});
+});
+router.get('/category', function (req, res, next) {
+	res.render('category', {title: 'Add Category'});
+});
+router.get('/categories', function (req, res, next) {
+	res.render('categories', {title: 'Categories'});
 });
 module.exports = router;
