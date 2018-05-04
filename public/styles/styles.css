@@ -12,7 +12,13 @@
     width: 10px;
     background-color: #F5F5F5;
 }
+.g-signin2{
+    width: 100%;
+}
 
+.g-signin2 > div{
+    margin: 0 auto;
+}
 #style-6::-webkit-scrollbar-thumb
 {
     background-color: #1e88e5;  }
@@ -31,7 +37,11 @@ body {
 img[data-src] {
     opacity: 0;
 }
-.active {
+.active-col {
     background-color: #1CAEEE !important;
     color: #ffffff !important;
+}
+
+.btn-flat {
+    border: #1CAEEE 1px solid;
 }

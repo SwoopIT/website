@@ -18,4 +18,7 @@ router.get('/blacklist', function (req, res, next) {
 router.get('/items', function (req, res, next) {
 	res.render('items', {title: 'Remove Items'});
 });
+router.get('/login', function (req, res, next) {
+	res.render('login', {title: 'Login'});
+});
 module.exports = router;

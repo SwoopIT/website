@@ -10,6 +10,8 @@
     <meta name="image" content="https://swoopit.xyz/favicon.png">
     <!-- Schema.org for Google -->
     <meta itemprop="name" content="{{{title}}}">
+    <meta name="google-signin-client_id"
+          content="396697495271-ol2niqtfo75sbd27mit9d13r74v63ffo.apps.googleusercontent.com">
     <meta itemprop="description" content="Food delivery for schools.">
     <meta itemprop="image" content="https://swoopit.xyz/favicon.png">
     <!-- Mobile App for Android -->
@@ -33,7 +35,7 @@
     <!-- Stylesheets -->
     <link rel="shortcut icon" href="favicon.png">
     <link rel="manifest" href="manifest.json">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <link rel="stylesheet" href="styles/styles.css">
     <style>
 
@@ -59,29 +61,43 @@
             <div class="col l4 offset-l2 s12">
                 <h5 class="white-text">Links</h5>
                 <ul>
-                    <li><a class="white-text" href="admin">Admin Console</a></li>
-                    <li><a class="white-text" href="#!">Link 2</a></li>
-                    <li><a class="white-text" href="#!">Link 3</a></li>
-                    <li><a class="white-text" href="#!">Link 4</a></li>
+                    <li><a class="white-text" href="login">Login</a></li>
+                    <li><a class="white-text" href="privacypolicy.html">Privacy Policy</a></li>
+                    <li><br></li>
+                    <li><a class="white-text" >Contact Us at swoopitapp@gmail.com</a></li>
+                    <li><a class="white-text" >Under no circumstances will we offer refunds</a></li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="footer-copyright">
         <div class="container" style="font-weight: normal">
-            © 2017 SwoopIt
+            <ul>
+                <li><a class="white-text" >© 2018 SwoopIt</a></li>
+            </ul>
         </div>
     </div>
 </footer>
+<div class="center" style="padding: 20px; display: none;">
+    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" data-width="300" data-height="50"
+         data-longtitle="true"></div>
+</div>
 <!-- Javascript -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="js/index.js"></script>
 <img src="small.png" style="display: none">
 <script>
     $(document).ready(function () {
         $('.parallax').parallax();
-        if (window.location.pathname != '/') {
-        	$('body').css('background', '#f9f9f9')
+        if (window.location.pathname !== '/') {
+            $('body').css('background', '#f9f9f9')
+        }
+        if (window.location.pathname === 'admin') {
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
         }
     });
 </script>
