@@ -14,7 +14,7 @@
             <li><h3>Menu</h3></li>
         </ul>
         <div class="collection">
-            <a href="admin" class="collection-item blue-text">Admin Home</a>
+            <a class="collection-item blue-text">Admin Home</a>
             <a href="item" class="collection-item blue-text">Add Item</a>
             <a href="category" class="collection-item blue-text">Add Category</a>
             <a href="items" class="collection-item blue-text active-col">Items</a>
@@ -23,7 +23,7 @@
             <a href="/" class="collection-item blue-text">Sign Out</a>
         </div>
     </div>
-    <div class="container col s10 hide-on-med-and-down" style="margin-left: 10px">
+    <div class="container col s12" style="margin-left: 10px">
         <div class="row center">
             <table id="myTable" class="display">
                 <thead>
@@ -34,36 +34,6 @@
                 </tr>
                 </thead>
                 <tbody id="body2">
-                <tr id="mcd"></tr>
-                <tr id="lnl"></tr>
-                <tr id="dom"></tr>
-                <tr id="fdl"></tr>
-                <tr id="bgk"></tr>
-                <tr id="longs"></tr>
-                <tr id="csc"></tr>
-
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="container col s12 show-on-med-and-down hide-on-med-and-up" style="margin-left: 10px">
-        <div class="row center">
-            <table id="myTable1" class="display">
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Store</th>
-                    <th>ID</th>
-                </tr>
-                </thead>
-                <tbody id="body2-1">
-                <tr id="mcd"></tr>
-                <tr id="lnl"></tr>
-                <tr id="dom"></tr>
-                <tr id="fdl"></tr>
-                <tr id="bgk"></tr>
-                <tr id="longs"></tr>
-                <tr id="csc"></tr>
 
                 </tbody>
             </table>
@@ -78,22 +48,15 @@
             items = await getItems();
             var elems = document.querySelectorAll('.sidenav');
             var instances = M.Sidenav.init(elems);
-            for (var i = 0; i < items.length; i++) {
+            for (var i = 0; i < categories.length; i++) {
                 var row = $('#body2').append('<tr></tr>')
-                row.append('<td>' + items[i].name + '</td>');
-                row.append('<td>' + storeNames[getCategory(items[i].category).store] + '</td>');
-                row.append('<td>' + items[i].id + '</td>');
-            }
-            for (var i = 0; i < items.length; i++) {
-                row = $('#body2-1').append('<tr></tr>');
-                row.append('<td>' + items[i].name + '</td>');
-                row.append('<td>' + storeNames[getCategory(items[i].category).store] + '</td>');
-                row.append('<td>' + items[i].id + '</td>');
+                row.append('<td>' + categories[i].name + '</td>');
+                row.append('<td>' + categories[i].store + '</td>');
+                row.append('<td>' + categories[i].id + '</td>');
             }
         } catch (e) {
             console.log(e);
         }
         $('#myTable').DataTable();
-        $('#myTable1').DataTable();
     });
 </script>

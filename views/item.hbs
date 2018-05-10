@@ -50,16 +50,6 @@
 </div>
 
 <script>
-    var categories, items;
-    var storeNames = {
-        mcd: 'McDonald\'s',
-        fdl: 'Foodland',
-        kta: 'KTA',
-        lnl: 'L&L Barbecue',
-        bgk: 'Burger King',
-        longs: 'Longs Drugs',
-        csc: 'Costco'
-    };
     document.addEventListener('DOMContentLoaded', async function () {
         categories = await getCategories();
         items = await getItems();

@@ -29,13 +29,14 @@
     <!-- Apple -->
     <link rel="apple-touch-icon" href="favicon.png">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <!-- TODO: publish to the app store
-    <meta name="apple-itunes-app" content="app-id=myAppStoreID, affiliate-data=myAffiliateData, app-argument=myURL">
-    -->
+    <meta name='apple-touch-fullscreen' content='yes'>
+    <meta name="apple-itunes-app" content="app-id=1382417440">
     <!-- Stylesheets -->
     <link rel="shortcut icon" href="favicon.png">
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
     <link rel="stylesheet" href="styles/styles.css">
     <style>
 
@@ -46,6 +47,9 @@
     <nav class="blue darken-1 z-depth-0">
         <div class="nav-wrapper">
             <a class="center brand-logo text-darken-1">{{{title}}}</a>
+            <div class="left">
+                <a href="#" id="bam" data-target="slide-out" style="display: none;" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            </div>
         </div>
     </nav>
 </div>
@@ -84,12 +88,14 @@
 </div>
 <!-- Javascript -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="js/index.js"></script>
 <img src="small.png" style="display: none">
 <script>
+
     $(document).ready(function () {
         $('.parallax').parallax();
         if (window.location.pathname !== '/') {
@@ -97,6 +103,7 @@
             gapi.load('auth2', function () {
                 gapi.auth2.init({client_id: '396697495271-ol2niqtfo75sbd27mit9d13r74v63ffo.apps.googleusercontent.com'});
             });
+            $('#bam').show();
         }
         if (window.location.pathname === 'admin') {
             google.charts.load('current', {'packages': ['corechart']});

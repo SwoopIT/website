@@ -94,6 +94,23 @@ function addItem(name, price, category, img) {
 		}
 	})
 }
+function getCategory(id) {
+	for (var i = 0; i < categories.length; i++)
+		if (categories[i].id == id)
+			return categories[i];
+	return null;
+}
+
+var categories, items;
+var storeNames = {
+	mcd: 'McDonald\'s',
+	fdl: 'Foodland',
+	dom: 'Dominos',
+	lnl: 'L&L Barbecue',
+	bgk: 'Burger King',
+	longs: 'Longs Drugs',
+	csc: 'Costco'
+};
 
 function addCategory(name, store) {
 	console.log(name, store);
