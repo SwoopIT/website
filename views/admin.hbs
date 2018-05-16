@@ -9,7 +9,7 @@
     <li><a href="/" class="blue-text">Sign Out</a></li>
 </ul>
 <div class="row" style="margin-bottom: 20px; margin-top: 20px">
-    <div class="col s2" style="margin-left: 20px;">
+    <div class="col s2 hide-on-med-and-down" style="margin-left: 20px;">
         <ul>
             <li><h3>Menu</h3></li>
         </ul>
@@ -23,7 +23,7 @@
             <a href="/" class="collection-item blue-text">Sign Out</a>
         </div>
     </div>
-    <div class="col s8 container" style="margin-top: -7px">
+    <div class="col s12 container" style="margin-top: -7px">
         <div class="center">
             <h3>Statistics</h3>
         </div>
@@ -49,7 +49,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-action">
+                        <div class="card-action center" style="margin-top: 10px">
                             <a href="blacklist" class="blue-text btn-flat waves-effect waves-light">Manage Users</a>
                         </div>
                     </div>
@@ -58,11 +58,12 @@
             <div class="col s12 m6">
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title">Devices</span>
-                        <h5>Android</h5>
-                        <h5>iOS</h5>
-                        <div class="card-action">
-                            <a href="blacklist" class="blue-text btn-flat waves-effect waves-light">Manage Users</a>
+                        <span class="card-title">Statistics</span>
+                        <h5 id="item-count">Item Count: </h5>
+                        <h5 id="category-count">Category Count: </h5>
+                        <div class="card-action center" style="margin-top: 10px">
+                            <a href="items" class="blue-text btn-flat waves-effect waves-light">View Items</a>
+                            <a href="items" class="blue-text btn-flat waves-effect waves-light">View Categories</a>
                         </div>
                     </div>
                 </div>
@@ -70,3 +71,19 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', async function () {
+        try {
+            categories = await getCategories();
+            items = await getItems();
+            users = await getUsers();
+            $('#category-count').append(categories.length);
+            $('#item-count').append(items.length);
+
+
+        } catch (e) {
+            console.log(e);
+        }
+    });
+</script>

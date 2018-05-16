@@ -9,7 +9,7 @@
     <li><a href="/" class="blue-text">Sign Out</a></li>
 </ul>
 <div class="row" style="margin-bottom: 20px; margin-top: 20px">
-    <div class="col s2" style="margin-left: 20px;">
+    <div class="col s2 hide-on-med-and-down" style="margin-left: 20px;">
         <ul>
             <li><h3>Menu</h3></li>
         </ul>
@@ -24,7 +24,7 @@
         </div>
     </div>
 
-    <div class="container col s8" style="margin-left: 10px">
+    <div class="container col s10 hide-on-med-and-down" style="margin-left: 10px">
         <div class="row center">
             <h3>Add Category</h3>
             <form onsubmit="return false">
@@ -45,6 +45,31 @@
                     Submit
                 </button>
             </form>
+        </div>
+    </div>
+    <div class="container col s12 show-on-med-and-down hide-on-med-and-up" style="margin-left: 10px">
+        <div class="row center">
+            <div class="container">
+            <h3>Add Category</h3>
+            <form onsubmit="return false">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="name" type="text" class="validate">
+                        <label for="name">Category Name</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <select title="Stores" id="store">
+                            <option value="" disabled selected>Select a Store</option>
+                        </select>
+                        <label>Store</label>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-large blue white-text"
+                        onclick="addCategory($('#name').val(), $('#store').val())">
+                    Submit
+                </button>
+            </form>
+            </div>
         </div>
     </div>
 </div>

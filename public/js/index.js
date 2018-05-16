@@ -14,14 +14,13 @@ function onSignIn(googleUser) {
 }
 
 
-
 function signOut() {
 	try {
 		var auth2 = gapi.auth2.getAuthInstance();
 		auth2.signOut().then(function () {
 			console.log('User signed out.');
 		});
-	} catch(e) {
+	} catch (e) {
 		console.log(e);
 	}
 	window.location.href = '/'
@@ -49,11 +48,23 @@ if (window.location.pathname === '/admin') {
 	google.charts.load('current', {'packages': ['corechart']});
 	google.charts.setOnLoadCallback(drawChart);
 }
-function drawChart() {
+
+async function drawChart() {
+	var users = await getUsers();
+	console.log(users);
+	var incrementHPA = 0;
+	var incrementNO = 0;
+	for (var i = 0; i < users.length; i++) {
+		if (users[i].email.endsWith('hpa.edu')) {
+			incrementHPA++;
+		} else {
+			incrementNO++;
+		}
+	}
 	var data = google.visualization.arrayToDataTable([
 		['Email', 'Amount of People'],
-		['HPA Emails',     11],
-		['Other Emails',      2],
+		['HPA Emails', incrementHPA],
+		['Other Emails', incrementNO],
 	]);
 
 	var options = {
@@ -77,6 +88,10 @@ async function getStores() {
 	return $.get('https://api.swoopit.xyz/web/stores');
 }
 
+async function getUsers() {
+	return $.get('https://api.swoopit.xyz/web/users');
+}
+
 function addItem(name, price, category, img) {
 	console.log(name, price, category, img);
 	$.ajax({
@@ -94,6 +109,7 @@ function addItem(name, price, category, img) {
 		}
 	})
 }
+
 function getCategory(id) {
 	for (var i = 0; i < categories.length; i++)
 		if (categories[i].id == id)

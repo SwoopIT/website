@@ -104,6 +104,8 @@
                 gapi.auth2.init({client_id: '396697495271-ol2niqtfo75sbd27mit9d13r74v63ffo.apps.googleusercontent.com'});
             });
             $('#bam').show();
+            var elems = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(elems);
         }
         if (window.location.pathname === 'admin') {
             google.charts.load('current', {'packages': ['corechart']});
