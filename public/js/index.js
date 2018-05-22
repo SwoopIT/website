@@ -69,7 +69,7 @@ async function drawChart() {
 
 	var options = {
 		title: 'SwoopIt User Emails',
-		chartArea: {width: 450, height: 350}
+		chartArea: {width: 300, height: 650}
 	};
 	var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
