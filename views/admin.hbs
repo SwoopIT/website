@@ -59,8 +59,24 @@
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title">Statistics</span>
-                        <h5 id="item-count">Item Count: </h5>
-                        <h5 id="category-count">Category Count: </h5>
+                        <div class="center" id="preloader">
+                            <div class="preloader-wrapper big active">
+                                <div class="spinner-layer spinner-blue white">
+                                    <div class="circle-clipper left">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="gap-patch">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="circle-clipper right">
+                                        <div class="circle"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h5 id="item-count"></h5>
+                        <h5 id="category-count"></h5>
+                        <h5 id="user-count"></h5>
                         <div class="card-action center" style="margin-top: 10px">
                             <a href="items" class="blue-text btn-flat waves-effect waves-light">View Items</a>
                             <a href="categories" class="blue-text btn-flat waves-effect waves-light">View Categories</a>
@@ -78,10 +94,10 @@
             categories = await getCategories();
             items = await getItems();
             users = await getUsers();
-            $('#category-count').append(categories.length);
-            $('#item-count').append(items.length);
-
-
+            $('#preloader').hide();
+            $('#item-count').html('Item Count: ' + items.length);
+            $('#category-count').html('Category Count: ' + categories.length);
+            $('#user-count').html('Use Count: ' + users.length);
         } catch (e) {
             console.log(e);
         }
