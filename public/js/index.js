@@ -143,3 +143,18 @@ function addCategory(name, store) {
 		}
 	})
 }
+
+function blacklistUser(email, reason) {
+	$.ajax({
+		method: 'post',
+		url: 'https://api.swoopit.xyz/web/blacklist',
+		data: {
+			email: email,
+			reason: reason,
+		},
+		success: function (res) {
+			if (res === '0') return M.toast({html: 'There was an error adding this blacklist'});
+			M.toast({html: 'The blacklist has been successfully added!'})
+		}
+	})
+}

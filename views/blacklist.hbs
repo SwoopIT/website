@@ -29,13 +29,17 @@
             <h3>Blacklist User - Not working</h3>
             <form onsubmit="return false">
                 <div class="row">
-                    <div class="input-field col s12">
+                    <div class="input-field col s6">
                         <input id="email" type="email" class="validate">
                         <label for="email">User Email</label>
                     </div>
+                    <div class="input-field col s6">
+                        <input id="reason" type="text" class="validate">
+                        <label for="reason">Reason</label>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-large blue white-text"
-                        onclick="blacklistUser($('#email').val())">
+                        onclick="blacklistUser($('#email').val(), $('#reason').val())">
                     Blacklist
                 </button>
             </form>
@@ -51,9 +55,13 @@
                             <input id="email1" type="email" class="validate">
                             <label for="email1">User Email</label>
                         </div>
+                        <div class="input-field col s12">
+                            <input id="reason1" type="text" class="validate">
+                            <label for="reason1">Reason</label>
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-large blue white-text"
-                            onclick="blacklistUser($('#email1').val())">
+                            onclick="blacklistUser($('#email1').val(), $('#reason1').val())">
                         Blacklist
                     </button>
                 </form>
