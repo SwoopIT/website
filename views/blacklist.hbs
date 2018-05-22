@@ -26,7 +26,7 @@
 
     <div class="container col s10 hide-on-med-and-down" style="margin-left: 10px">
         <div class="row center">
-            <h3>Blacklist User - Not working</h3>
+            <h3>Blacklist Users</h3>
             <form onsubmit="return false">
                 <div class="row">
                     <div class="input-field col s6">
@@ -42,6 +42,8 @@
                         onclick="blacklistUser($('#email').val(), $('#reason').val())">
                     Blacklist
                 </button>
+                <br>
+                <a href="https://api.swoopit.xyz/web/blacklist">View Blacklisted Users</a>
             </form>
         </div>
     </div>
@@ -64,6 +66,8 @@
                             onclick="blacklistUser($('#email1').val(), $('#reason1').val())">
                         Blacklist
                     </button>
+                    <br>
+                    <a href="https://api.swoopit.xyz/web/blacklist">View Blacklisted Users</a>
                 </form>
             </div>
         </div>

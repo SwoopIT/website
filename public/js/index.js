@@ -153,8 +153,8 @@ function blacklistUser(email, reason) {
 			reason: reason,
 		},
 		success: function (res) {
-			if (res === '0') return M.toast({html: 'There was an error adding this blacklist'});
-			M.toast({html: 'The blacklist has been successfully added!'})
+			if (res === '0') return M.toast({html: 'There was an error adding this user to the blacklist'});
+			M.toast({html: 'The user has been successfully added to the blacklist!'})
 		}
 	})
 }
