@@ -37,6 +37,21 @@
 
                 </tbody>
             </table>
+            <br>
+            <br>
+            <div class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-blue" style="background-color: #f9f9f9;">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -47,16 +62,14 @@
             categories = await getCategories();
             items = await getItems();
             for (var i = 0; i < categories.length; i++) {
-                var row = $('#body2').append('<tr></tr>')
+                var row = $('#body2').append('<tr></tr>');
                 row.append('<td>' + categories[i].name + '</td>');
-                row.append('<td>' + categories[i].store + '</td>');
+                row.append('<td>' + getStore(categories[i].store) + '</td>');
                 row.append('<td>' + categories[i].id + '</td>');
             }
+            $('#preloader-wrapper').remove();
         } catch (e) {
             console.log(e);
         }
-    });
-    document.addEventListener('DOMContentLoaded', function () {
-        $('#myTable').DataTable();
     });
 </script>

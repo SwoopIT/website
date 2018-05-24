@@ -33,7 +33,7 @@
                     <th>ID</th>
                 </tr>
                 </thead>
-                <tbody id="body2">
+                <tbody id="body2-1">
                 <tr id="mcd"></tr>
                 <tr id="lnl"></tr>
                 <tr id="dom"></tr>
@@ -44,6 +44,22 @@
 
                 </tbody>
             </table>
+            <br>
+            <br>
+            <div class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-blue" style="background-color: #f9f9f9;">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
     <div class="container col s12 show-on-med-and-down hide-on-med-and-up" style="margin-left: 10px">
@@ -67,6 +83,19 @@
 
                 </tbody>
             </table>
+            <div class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-blue white">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -90,13 +119,9 @@
                 row.append('<td>' + storeNames[getCategory(items[i].category).store] + '</td>');
                 row.append('<td>' + items[i].id + '</td>');
             }
+            $('#preloader-wrapper').remove();
         } catch (e) {
             console.log(e);
         }
-    });
-    document.addEventListener('DOMContentLoaded', function () {
-        $('#myTable').DataTable();
-        $('#myTable1').DataTable();
-
     });
 </script>
