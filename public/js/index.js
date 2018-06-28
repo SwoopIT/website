@@ -121,7 +121,7 @@ function getStore(id) {
 	return storeNames[id]
 }
 
-var categories, items;
+var categories, items, users;
 var storeNames = {
 	mcd: 'McDonald\'s',
 	fdl: 'Foodland',

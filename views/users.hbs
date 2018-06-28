@@ -3,9 +3,9 @@
     <li><a href="admin" class="black-text">Admin Home</a></li>
     <li><a href="item" class="black-text">Add Item</a></li>
     <li><a href="category" class="black-text">Add Category</a></li>
-    <li><a class="black-text active-col">Items</a></li>
+    <li><a class="black-text">Items</a></li>
     <li><a href="categories" class="black-text">Categories</a></li>
-    <li><a href="users" class="black-text">Users</a></li>
+    <li><a href="users" class="black-text active-col">Users</a></li>
     <li><a href="blacklist" class="black-text">Blacklist Users</a></li>
     <li><a href="/" class="blue-text">Sign Out</a></li>
 </ul>
@@ -20,7 +20,7 @@
             <a href="category" class="collection-item blue-text">Add Category</a>
             <a class="collection-item blue-text active-col">Items</a>
             <a href="categories" class="collection-item blue-text">Categories</a>
-            <a href="users" class="blue-text collection-item">Users</a>
+            <a href="users" class="blue-text collection-item active-col">Users</a>
             <a href="blacklist" class="collection-item blue-text">Blacklist Users</a>
             <a href="/" class="collection-item blue-text">Sign Out</a>
         </div>
@@ -30,19 +30,12 @@
             <table id="myTable" class="display">
                 <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Store</th>
-                    <th>ID</th>
+                    <th>Email</th>
+                    <th>Android Devices</th>
+                    <th>iOS Devices</th>
                 </tr>
                 </thead>
                 <tbody id="body2-1">
-                <tr id="mcd"></tr>
-                <tr id="lnl"></tr>
-                <tr id="dom"></tr>
-                <tr id="fdl"></tr>
-                <tr id="bgk"></tr>
-                <tr id="longs"></tr>
-                <tr id="csc"></tr>
 
                 </tbody>
             </table>
@@ -69,19 +62,12 @@
             <table id="myTable1" class="display">
                 <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Store</th>
-                    <th>ID</th>
+                    <th>Email</th>
+                    <th>Android Devices</th>
+                    <th>iOS Devices</th>
                 </tr>
                 </thead>
                 <tbody id="body2-1">
-                <tr id="mcd"></tr>
-                <tr id="lnl"></tr>
-                <tr id="dom"></tr>
-                <tr id="fdl"></tr>
-                <tr id="bgk"></tr>
-                <tr id="longs"></tr>
-                <tr id="csc"></tr>
 
                 </tbody>
             </table>
@@ -107,19 +93,37 @@
         try {
             categories = await getCategories();
             items = await getItems();
+            users = await getUsers();
             var elems = document.querySelectorAll('.sidenav');
             var instances = M.Sidenav.init(elems);
-            for (var i = 0; i < items.length; i++) {
-                var row = $('#body2').append('<tr></tr>')
-                row.append('<td>' + items[i].name + '</td>');
-                row.append('<td>' + storeNames[getCategory(items[i].category).store] + '</td>');
-                row.append('<td>' + items[i].id + '</td>');
+            for (var i = 0; i < users.length; i++) {
+                var row = $('#body2').append('<tr></tr>');
+                row.append('<td>' + users[i].email + '</td>');
+                if (users[i].devices.android[0] == null) {
+                    row.append('<td>' + 0 + '</td>');
+                } else {
+                    row.append('<td>' + users[i].devices.android.length + '</td>');
+                }
+                if (users[i].devices.ios[0] == "") {
+                    row.append('<td>' + 0 + '</td>');
+                } else {
+                    row.append('<td>' + users[i].devices.ios.length + '</td>');
+                }
             }
-            for (var i = 0; i < items.length; i++) {
+            for (var i = 0; i < users.length; i++) {
+                console.log(users[i]);
                 row = $('#body2-1').append('<tr></tr>');
-                row.append('<td>' + items[i].name + '</td>');
-                row.append('<td>' + storeNames[getCategory(items[i].category).store] + '</td>');
-                row.append('<td>' + items[i].id + '</td>');
+                row.append('<td>' + users[i].email + '</td>');
+                if (users[i].devices.android[0] == null) {
+                    row.append('<td>' + 0 + '</td>');
+                } else {
+                    row.append('<td>' + users[i].devices.android.length + '</td>');
+                }
+                if (users[i].devices.ios[0] == "" && users[i].devices.ios.length === 1) {
+                    row.append('<td>' + 0 + '</td>');
+                } else {
+                    row.append('<td>' + users[i].devices.ios.length + '</td>');
+                }
             }
             $('#preloader-wrapper').remove();
         } catch (e) {

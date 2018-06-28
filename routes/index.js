@@ -15,6 +15,9 @@ router.get('/item', function (req, res, next) {
 router.get('/blacklist', function (req, res, next) {
 	res.render('blacklist', {title: 'Blacklist User'});
 });
+router.get('/users', function (req, res, next) {
+	res.render('users', {title: 'Manage Users'});
+});
 router.get('/items', function (req, res, next) {
 	res.render('items', {title: 'Items'});
 });
