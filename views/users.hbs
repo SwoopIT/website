@@ -9,84 +9,84 @@
     <li><a href="blacklist" class="black-text">Blacklist Users</a></li>
     <li><a href="/" class="blue-text">Sign Out</a></li>
 </ul>
-<div class="row" style="margin-bottom: 20px; margin-top: 20px">
-    <div class="col s2 hide-on-med-and-down" style="margin-left: 20px;">
-        <ul>
-            <li><h3>Menu</h3></li>
-        </ul>
-        <div class="collection">
-            <a href="admin" class="collection-item blue-text">Admin Home</a>
-            <a href="item" class="collection-item blue-text">Add Item</a>
-            <a href="category" class="collection-item blue-text">Add Category</a>
-            <a class="collection-item blue-text">Items</a>
-            <a href="categories" class="collection-item blue-text">Categories</a>
-            <a href="users" class="blue-text collection-item active-col">Users</a>
-            <a href="blacklist" class="collection-item blue-text">Blacklist Users</a>
-            <a href="/" class="collection-item blue-text">Sign Out</a>
+    <div class="row" style="margin-bottom: 20px; margin-top: 20px">
+        <div class="col s2 hide-on-med-and-down" style="margin-left: 20px;">
+            <ul>
+                <li><h3>Menu</h3></li>
+            </ul>
+            <div class="collection">
+                <a href="admin" class="collection-item blue-text">Admin Home</a>
+                <a href="item" class="collection-item blue-text">Add Item</a>
+                <a href="category" class="collection-item blue-text">Add Category</a>
+                <a class="collection-item blue-text">Items</a>
+                <a href="categories" class="collection-item blue-text">Categories</a>
+                <a href="users" class="blue-text collection-item active-col">Users</a>
+                <a href="blacklist" class="collection-item blue-text">Blacklist Users</a>
+                <a href="/" class="collection-item blue-text">Sign Out</a>
+            </div>
         </div>
-    </div>
-    <div class="container col s10 hide-on-med-and-down" style="margin-left: 10px">
-        <div class="row center">
-            <table id="myTable" class="display">
-                <thead>
-                <tr>
-                    <th>Email</th>
-                    <th>Android Devices</th>
-                    <th>iOS Devices</th>
-                </tr>
-                </thead>
-                <tbody id="body2-1">
+        <!--<div class="container col s10 hide-on-med-and-down" style="margin-left: 10px">
+            <div class="row center">
+                <table id="myTable" class="display">
+                    <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Android Devices</th>
+                        <th>iOS Devices</th>
+                    </tr>
+                    </thead>
+                    <tbody id="body2-1">
 
-                </tbody>
-            </table>
-            <br>
-            <br>
-            <div class="preloader-wrapper big active">
-                <div class="spinner-layer spinner-blue" style="background-color: #f9f9f9;">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
+                    </tbody>
+                </table>
+                <br>
+                <br>
+                <div class="preloader-wrapper big active">
+                    <div class="spinner-layer spinner-blue" style="background-color: #f9f9f9;">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
                     </div>
-                    <div class="gap-patch">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
+                </div>
+
+            </div>
+        </div>-->
+        <div class="container col s10" style="margin-left: 10px">
+            <div class="row center">
+                <table id="myTable1" class="display">
+                    <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Android Devices</th>
+                        <th>iOS Devices</th>
+                    </tr>
+                    </thead>
+                    <tbody id="body2-2">
+
+                    </tbody>
+                </table>
+                <div class="preloader-wrapper big active">
+                    <div class="spinner-layer spinner-blue white">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-    <div class="container col s12 show-on-med-and-down hide-on-med-and-up" style="margin-left: 10px">
-        <div class="row center">
-            <table id="myTable1" class="display">
-                <thead>
-                <tr>
-                    <th>Email</th>
-                    <th>Android Devices</th>
-                    <th>iOS Devices</th>
-                </tr>
-                </thead>
-                <tbody id="body2-1">
-
-                </tbody>
-            </table>
-            <div class="preloader-wrapper big active">
-                <div class="spinner-layer spinner-blue white">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="gap-patch">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <script>
     document.addEventListener('DOMContentLoaded', async function () {
@@ -97,35 +97,40 @@
             var elems = document.querySelectorAll('.sidenav');
             var instances = M.Sidenav.init(elems);
             for (var i = 0; i < users.length; i++) {
-                var row = $('#body2').append('<tr></tr>');
-                row.append('<td>' + users[i].email + '</td>');
+                var toAppend = '<tr>';
+                toAppend += '<td>' + users[i].email + '</td>';
                 if (users[i].devices.android[0] == null) {
-                    row.append('<td>' + 0 + '</td>');
+                    toAppend += '<td>' + 0 + '</td>'
                 } else {
-                    row.append('<td>' + users[i].devices.android.length + '</td>');
+                    toAppend += '<td>' + users[i].devices.android.length + '</td>'
                 }
                 if (users[i].devices.ios[0] == "") {
-                    row.append('<td>' + 0 + '</td>');
+                    toAppend += '<td>' + 0 + '</td>'
                 } else {
-                    row.append('<td>' + users[i].devices.ios.length + '</td>');
+                    toAppend += '<td>' + users[i].devices.ios.length + '</td>'
                 }
+                toAppend += '</tr>';
+                $('#body2-1').append(toAppend);
             }
             for (var i = 0; i < users.length; i++) {
-                console.log(users[i]);
-                row = $('#body2-1').append('<tr></tr>');
-                row.append('<td>' + users[i].email + '</td>');
+                var toAppend = '<tr>';
+                toAppend += '<td>' + users[i].email + '</td>';
                 if (users[i].devices.android[0] == null) {
-                    row.append('<td>' + 0 + '</td>');
+                    toAppend += '<td>' + 0 + '</td>'
                 } else {
-                    row.append('<td>' + users[i].devices.android.length + '</td>');
+                    toAppend += '<td>' + users[i].devices.android.length + '</td>'
                 }
-                if (users[i].devices.ios[0] == "" && users[i].devices.ios.length === 1) {
-                    row.append('<td>' + 0 + '</td>');
+                if (users[i].devices.ios[0] == "") {
+                    toAppend += '<td>' + 0 + '</td>'
                 } else {
-                    row.append('<td>' + users[i].devices.ios.length + '</td>');
+                    toAppend += '<td>' + users[i].devices.ios.length + '</td>'
                 }
+                toAppend += '</tr>';
+                $('#body2-2').append(toAppend);
             }
-            $('#preloader-wrapper').remove();
+            $('#myTable').DataTable();
+            $('#myTable1').DataTable();
+            $('.preloader-wrapper').remove();
         } catch (e) {
             console.log(e);
         }
