@@ -9,26 +9,10 @@
     <li><a class="black-text active-col">Blacklist Users</a></li>
     <li><a href="/" class="blue-text">Sign Out</a></li>
 </ul>
-<div class="row" style="margin-bottom: 20px; margin-top: 20px">
-    <div class="col s2 hide-on-med-and-down" style="margin-left: 20px;">
-        <ul>
-            <li><h3>Menu</h3></li>
-        </ul>
-        <div class="collection">
-            <a href="admin" class="collection-item blue-text">Admin Home</a>
-            <a href="item" class="collection-item blue-text">Add Items</a>
-            <a href="category" class="collection-item blue-text">Add Category</a>
-            <a href="items" class="collection-item blue-text">Items</a>
-            <a href="categories" class="collection-item blue-text">Categories</a>
-            <a href="users" class="blue-text collection-item">Users</a>
-            <a class="collection-item active-col blue-text">Blacklist Users</a>
-            <a href="/" class="collection-item blue-text">Sign Out</a>
-        </div>
-    </div>
-
-    <div class="container col s10 hide-on-med-and-down" style="margin-left: 10px">
-        <div class="row center">
-            <h3>Blacklist Users</h3>
+<div class="center" style="margin: 20px 20px;">
+    <div class="row col s12 " style="margin-top: -7px">
+        <div class="center">
+            <h3>Blacklist User</h3>
             <form onsubmit="return false">
                 <div class="row">
                     <div class="input-field col s6">
@@ -36,7 +20,7 @@
                         <label for="email">User Email</label>
                     </div>
                     <div class="input-field col s6">
-                        <input id="reason" type="text" class="validate">
+                        <input id="reason" type="text">
                         <label for="reason">Reason</label>
                     </div>
                 </div>
@@ -45,34 +29,12 @@
                     Blacklist
                 </button>
                 <br>
+                <br>
                 <a href="https://api.swoopit.xyz/web/blacklist">View Blacklisted Users</a>
             </form>
         </div>
     </div>
-    <div class="container col s12 show-on-med-and-down hide-on-med-and-up" style="margin-left: 10px">
-        <div class="row center">
-            <div class="container">
-                <h3>Blacklist User - not working</h3>
-                <form onsubmit="return false">
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input id="email1" type="email" class="validate">
-                            <label for="email1">User Email</label>
-                        </div>
-                        <div class="input-field col s12">
-                            <input id="reason1" type="text" class="validate">
-                            <label for="reason1">Reason</label>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-large blue white-text"
-                            onclick="blacklistUser($('#email1').val(), $('#reason1').val())">
-                        Blacklist
-                    </button>
-                    <br>
-                    <a href="https://api.swoopit.xyz/web/blacklist">View Blacklisted Users</a>
-                </form>
-            </div>
-        </div>
+
     </div>
 </div>
 
@@ -88,6 +50,10 @@
         csc: 'Costco'
     };
     document.addEventListener('DOMContentLoaded', async function () {
+        if (getParameterByName('email')) {
+            $('#email').val(getParameterByName('email'));
+            $('#email').focus();
+        }
         categories = await getCategories();
         items = await getItems();
         stores = await getStores();

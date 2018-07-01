@@ -9,30 +9,16 @@
     <li><a href="blacklist" class="black-text">Blacklist Users</a></li>
     <li><a href="/" class="blue-text">Sign Out</a></li>
 </ul>
-<div class="row" style="margin-bottom: 20px; margin-top: 20px">
-    <div class="col s2 hide-on-med-and-down" style="margin-left: 20px;">
-        <ul>
-            <li><h3>Menu</h3></li>
-        </ul>
-        <div class="collection">
-            <a href="admin" class="collection-item blue-text">Admin Home</a>
-            <a href="item" class="collection-item blue-text">Add Item</a>
-            <a href="category" class="collection-item blue-text">Add Category</a>
-            <a href="items" class="collection-item blue-tex">Items</a>
-            <a class="collection-item active-col blue-text">Categories</a>
-            <a href="users" class="blue-text collection-item">Users</a>
-            <a href="blacklist" class="collection-item blue-text">Blacklist Users</a>
-            <a href="/" class="collection-item blue-text">Sign Out</a>
-        </div>
-    </div>
-    <div class="container col s12" style="margin-left: 10px">
-        <div class="row center">
+<div class="center" style="margin: 20px 20px;">
+    <div class="row col s12" style="margin-top: -7px">
+        <div class="center">
             <table id="myTable" class="display">
                 <thead>
                 <tr>
                     <th>Name</th>
                     <th>Store</th>
                     <th>ID</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody id="body2">
@@ -41,8 +27,8 @@
             </table>
             <br>
             <br>
-            <div class="preloader-wrapper big active">
-                <div class="spinner-layer spinner-blue" style="background-color: #f9f9f9;">
+            <div class="preloader-wrapper big active" style="margin-top: 10px;">
+                <div class="spinner-layer spinner-blue bg">
                     <div class="circle-clipper left">
                         <div class="circle"></div>
                     </div>
@@ -64,12 +50,16 @@
             categories = await getCategories();
             items = await getItems();
             for (var i = 0; i < categories.length; i++) {
-                var row = $('#body2').append('<tr></tr>');
-                row.append('<td>' + categories[i].name + '</td>');
-                row.append('<td>' + getStore(categories[i].store) + '</td>');
-                row.append('<td>' + categories[i].id + '</td>');
+                var toAppend = '<tr>' +
+                        '<td>' + categories[i].name + '</td>' +
+                        '<td>' + getStore(categories[i].store) + '</td>' +
+                        '<td>' + categories[i].id + '</td>' +
+                        '<td><a class=\'btn red\' onclick="alert(\'This will open a modal and propt you to delte it\');">Remove</a></td>' +
+                        '</tr>';
+
+                $('#body2').append(toAppend);
             }
-            $('#preloader-wrapper').remove();
+            $('.preloader-wrapper').remove();
         } catch (e) {
             console.log(e);
         }

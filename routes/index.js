@@ -7,16 +7,16 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/admin', function (req, res, next) {
-	res.render('admin', {title: 'Admin Console'});
+	res.render('admin', {title: 'Console'});
 });
 router.get('/item', function (req, res, next) {
 	res.render('item', {title: 'New Item'});
 });
 router.get('/blacklist', function (req, res, next) {
-	res.render('blacklist', {title: 'Blacklist User'});
+	res.render('blacklist', {title: 'Blacklist'});
 });
 router.get('/users', function (req, res, next) {
-	res.render('users', {title: 'Manage Users'});
+	res.render('users', {title: 'Users'});
 });
 router.get('/items', function (req, res, next) {
 	res.render('items', {title: 'Items'});
@@ -25,7 +25,7 @@ router.get('/login', function (req, res, next) {
 	res.render('login', {title: 'Login'});
 });
 router.get('/category', function (req, res, next) {
-	res.render('category', {title: 'Add Category'});
+	res.render('category', {title: 'Category'});
 });
 router.get('/categories', function (req, res, next) {
 	res.render('categories', {title: 'Categories'});

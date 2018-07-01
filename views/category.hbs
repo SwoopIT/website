@@ -9,26 +9,11 @@
     <li><a href="blacklist" class="black-text">Blacklist Users</a></li>
     <li><a href="/" class="blue-text">Sign Out</a></li>
 </ul>
-<div class="row" style="margin-bottom: 20px; margin-top: 20px">
-    <div class="col s2 hide-on-med-and-down" style="margin-left: 20px;">
-        <ul>
-            <li><h3>Menu</h3></li>
-        </ul>
-        <div class="collection">
-            <a href="admin" class="collection-item blue-text">Admin Home</a>
-            <a href="item" class="collection-item blue-text">Add Items</a>
-            <a class="collection-item active-col blue-text">Add Category</a>
-            <a href="items" class="collection-item blue-text">Items</a>
-            <a href="categories" class="collection-item blue-text">Categories</a>
-            <a href="users" class="blue-text collection-item">Users</a>
-            <a href="blacklist" class="collection-item blue-text">Blacklist Users</a>
-            <a href="/" class="collection-item blue-text">Sign Out</a>
-        </div>
-    </div>
+<div class="center" style="margin: 20px 20px;">
+    <div class="row col s12" style="margin-top: -7px">
+        <div class="center">
+            <h3>Add Category</h3>
 
-    <div class="container col s10 hide-on-med-and-down" style="margin-left: 10px">
-        <div class="row center">
-            <h3>Add Category</h3>
             <form onsubmit="return false">
                 <div class="row">
                     <div class="input-field col s6">
@@ -47,31 +32,6 @@
                     Submit
                 </button>
             </form>
-        </div>
-    </div>
-    <div class="container col s12 show-on-med-and-down hide-on-med-and-up" style="margin-left: 10px">
-        <div class="row center">
-            <div class="container">
-            <h3>Add Category</h3>
-            <form onsubmit="return false">
-                <div class="row">
-                    <div class="input-field col s6">
-                        <input id="name" type="text" class="validate">
-                        <label for="name">Category Name</label>
-                    </div>
-                    <div class="input-field col s6">
-                        <select title="Stores" id="store">
-                            <option value="" disabled selected>Select a Store</option>
-                        </select>
-                        <label>Store</label>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-large blue white-text"
-                        onclick="addCategory($('#name').val(), $('#store').val())">
-                    Submit
-                </button>
-            </form>
-            </div>
         </div>
     </div>
 </div>

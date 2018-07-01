@@ -3,76 +3,30 @@
     <li><a href="admin" class="black-text">Admin Home</a></li>
     <li><a href="item" class="black-text">Add Item</a></li>
     <li><a href="category" class="black-text">Add Category</a></li>
-    <li><a class="black-text">Items</a></li>
+    <li><a href="items"  class="black-text">Items</a></li>
     <li><a href="categories" class="black-text">Categories</a></li>
     <li><a href="users" class="black-text active-col">Users</a></li>
     <li><a href="blacklist" class="black-text">Blacklist Users</a></li>
     <li><a href="/" class="blue-text">Sign Out</a></li>
 </ul>
-    <div class="row" style="margin-bottom: 20px; margin-top: 20px">
-        <div class="col s2 hide-on-med-and-down" style="margin-left: 20px;">
-            <ul>
-                <li><h3>Menu</h3></li>
-            </ul>
-            <div class="collection">
-                <a href="admin" class="collection-item blue-text">Admin Home</a>
-                <a href="item" class="collection-item blue-text">Add Item</a>
-                <a href="category" class="collection-item blue-text">Add Category</a>
-                <a class="collection-item blue-text">Items</a>
-                <a href="categories" class="collection-item blue-text">Categories</a>
-                <a href="users" class="blue-text collection-item active-col">Users</a>
-                <a href="blacklist" class="collection-item blue-text">Blacklist Users</a>
-                <a href="/" class="collection-item blue-text">Sign Out</a>
-            </div>
-        </div>
-        <!--<div class="container col s10 hide-on-med-and-down" style="margin-left: 10px">
-            <div class="row center">
-                <table id="myTable" class="display">
+<div class="center" style="margin: 20px 20px;">
+    <div class="row col s12" style="margin-top: -7px">
+        <div class="center">
+            <table id="myTable1" class="display">
                     <thead>
                     <tr>
                         <th>Email</th>
                         <th>Android Devices</th>
                         <th>iOS Devices</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody id="body2-1">
 
                     </tbody>
                 </table>
-                <br>
-                <br>
-                <div class="preloader-wrapper big active">
-                    <div class="spinner-layer spinner-blue" style="background-color: #f9f9f9;">
-                        <div class="circle-clipper left">
-                            <div class="circle"></div>
-                        </div>
-                        <div class="gap-patch">
-                            <div class="circle"></div>
-                        </div>
-                        <div class="circle-clipper right">
-                            <div class="circle"></div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>-->
-        <div class="container col s10" style="margin-left: 10px">
-            <div class="row center">
-                <table id="myTable1" class="display">
-                    <thead>
-                    <tr>
-                        <th>Email</th>
-                        <th>Android Devices</th>
-                        <th>iOS Devices</th>
-                    </tr>
-                    </thead>
-                    <tbody id="body2-2">
-
-                    </tbody>
-                </table>
-                <div class="preloader-wrapper big active">
-                    <div class="spinner-layer spinner-blue white">
+                <div class="preloader-wrapper big active" style="margin-top: 10px;">
+                    <div class="spinner-layer spinner-blue bg">
                         <div class="circle-clipper left">
                             <div class="circle"></div>
                         </div>
@@ -87,7 +41,7 @@
             </div>
         </div>
     </div>
-
+</div>
 <script>
     document.addEventListener('DOMContentLoaded', async function () {
         try {
@@ -109,30 +63,24 @@
                 } else {
                     toAppend += '<td>' + users[i].devices.ios.length + '</td>'
                 }
-                toAppend += '</tr>';
+                toAppend += '<td><a class=\'dropdown-trigger btn blue\' onclick="history.pushState(null, null, updateQueryStringParameter(window.location.pathname, \'email\', \'' + users[i].email + '\'));" data-target=\'user-dropdown\'>User Information</a></td></tr>';
+
                 $('#body2-1').append(toAppend);
+                var drops = document.querySelectorAll('.dropdown-trigger');
+                var dropdown1 = M.Dropdown.init(drops);
             }
-            for (var i = 0; i < users.length; i++) {
-                var toAppend = '<tr>';
-                toAppend += '<td>' + users[i].email + '</td>';
-                if (users[i].devices.android[0] == null) {
-                    toAppend += '<td>' + 0 + '</td>'
-                } else {
-                    toAppend += '<td>' + users[i].devices.android.length + '</td>'
-                }
-                if (users[i].devices.ios[0] == "") {
-                    toAppend += '<td>' + 0 + '</td>'
-                } else {
-                    toAppend += '<td>' + users[i].devices.ios.length + '</td>'
-                }
-                toAppend += '</tr>';
-                $('#body2-2').append(toAppend);
-            }
-            $('#myTable').DataTable();
-            $('#myTable1').DataTable();
+           // $('#myTable').DataTable();
+            //$('#myTable1').DataTable();
+            //$('input[type=search]').addClass('browser-default');
             $('.preloader-wrapper').remove();
         } catch (e) {
             console.log(e);
         }
     });
 </script>
+
+<ul id='user-dropdown' class='dropdown-content'>
+    <li><a class="black-text" onclick="window.location.href = encodeURI('/blacklist?email=' + getParameterByName('email'))"><i class="material-icons">block</i>Blacklist</a></li>
+    <li><a class="red-text" onclick="alert('This will open a modal and super-confirm with you')"><i class="material-icons">delete_forever</i>Delete User</a></li>
+    <li><a class="blue-text" onclick="alert('This will remove a the blacklist from the user if applicable')"><i class="material-icons">control_point</i>Whitelist</a></li>
+</ul>

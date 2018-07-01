@@ -9,47 +9,26 @@
     <li><a href="blacklist" class="black-text">Blacklist Users</a></li>
     <li><a href="/" class="blue-text">Sign Out</a></li>
 </ul>
-<div class="row" style="margin-bottom: 20px; margin-top: 20px">
-    <div class="col s2 hide-on-med-and-down" style="margin-left: 20px;">
-        <ul>
-            <li><h3>Menu</h3></li>
-        </ul>
-        <div class="collection">
-            <a href="admin" class="collection-item blue-text">Admin Home</a>
-            <a href="item" class="collection-item blue-text">Add Item</a>
-            <a href="category" class="collection-item blue-text">Add Category</a>
-            <a class="collection-item blue-text active-col">Items</a>
-            <a href="categories" class="collection-item blue-text">Categories</a>
-            <a href="users" class="blue-text collection-item">Users</a>
-            <a href="blacklist" class="collection-item blue-text">Blacklist Users</a>
-            <a href="/" class="collection-item blue-text">Sign Out</a>
-        </div>
-    </div>
-    <div class="container col s10 hide-on-med-and-down" style="margin-left: 10px">
-        <div class="row center">
+<div class="center" style="margin: 20px 20px;">
+    <div class="row col s12" style="margin-top: -7px">
+        <div class="center">
             <table id="myTable" class="display">
                 <thead>
                 <tr>
                     <th>Name</th>
                     <th>Store</th>
                     <th>ID</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
-                <tbody id="body2-1">
-                <tr id="mcd"></tr>
-                <tr id="lnl"></tr>
-                <tr id="dom"></tr>
-                <tr id="fdl"></tr>
-                <tr id="bgk"></tr>
-                <tr id="longs"></tr>
-                <tr id="csc"></tr>
+                <tbody id="table-body">
 
                 </tbody>
             </table>
             <br>
             <br>
-            <div class="preloader-wrapper big active">
-                <div class="spinner-layer spinner-blue" style="background-color: #f9f9f9;">
+            <div class="preloader-wrapper big active" style="margin-top: 10px;">
+                <div class="spinner-layer spinner-blue bg">
                     <div class="circle-clipper left">
                         <div class="circle"></div>
                     </div>
@@ -62,42 +41,6 @@
                 </div>
             </div>
 
-        </div>
-    </div>
-    <div class="container col s12 show-on-med-and-down hide-on-med-and-up" style="margin-left: 10px">
-        <div class="row center">
-            <table id="myTable1" class="display">
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Store</th>
-                    <th>ID</th>
-                </tr>
-                </thead>
-                <tbody id="body2-1">
-                <tr id="mcd"></tr>
-                <tr id="lnl"></tr>
-                <tr id="dom"></tr>
-                <tr id="fdl"></tr>
-                <tr id="bgk"></tr>
-                <tr id="longs"></tr>
-                <tr id="csc"></tr>
-
-                </tbody>
-            </table>
-            <div class="preloader-wrapper big active">
-                <div class="spinner-layer spinner-blue white">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="gap-patch">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
@@ -110,20 +53,26 @@
             var elems = document.querySelectorAll('.sidenav');
             var instances = M.Sidenav.init(elems);
             for (var i = 0; i < items.length; i++) {
-                var row = $('#body2').append('<tr></tr>')
-                row.append('<td>' + items[i].name + '</td>');
-                row.append('<td>' + storeNames[getCategory(items[i].category).store] + '</td>');
-                row.append('<td>' + items[i].id + '</td>');
+                var toAppend = '<tr>' +
+                        '<td>' + items[i].name + '</td>' +
+                        '<td>' + storeNames[getCategory(items[i].category).store] + '</td>' +
+                        '<td>' +  items[i].id + '</td>' +
+                        '<td><a class=\'dropdown-trigger btn blue\' onclick="history.pushState(null, null, updateQueryStringParameter(window.location.pathname, \'item-id\', \'' + items[i].id + '\'));" data-target=\'item-dropdown\'>Item Information</a></td>' +
+                        '</tr>';
+
+                $('#table-body').append(toAppend);
+                var drops = document.querySelectorAll('.dropdown-trigger');
+                var dropdown1 = M.Dropdown.init(drops);
             }
-            for (var i = 0; i < items.length; i++) {
-                row = $('#body2-1').append('<tr></tr>');
-                row.append('<td>' + items[i].name + '</td>');
-                row.append('<td>' + storeNames[getCategory(items[i].category).store] + '</td>');
-                row.append('<td>' + items[i].id + '</td>');
-            }
-            $('#preloader-wrapper').remove();
+            $('.preloader-wrapper').remove();
         } catch (e) {
             console.log(e);
         }
     });
 </script>
+
+<ul id='item-dropdown' class='dropdown-content'>
+    <li><a class="blue-text" onclick="alert('this will open a modal to edit the item')"><i class="material-icons">edit</i>Edit</a></li>
+    <li><a class="red-text" onclick="alert('This will open a modal and super-confirm with you')"><i class="material-icons">delete_forever</i>Delete</a></li>
+
+</ul>

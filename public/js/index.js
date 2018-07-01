@@ -12,12 +12,21 @@ function onSignIn(googleUser) {
 	});
 	checkAdmin();
 }
-
+function updateQueryStringParameter(uri, key, value) {
+	var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+	var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+	if (uri.match(re)) {
+		return uri.replace(re, '$1' + key + "=" + value + '$2');
+	}
+	else {
+		return uri + separator + key + "=" + value;
+	}
+}
 
 function signOut() {
 	try {
 		var auth2 = gapi.auth2.getAuthInstance();
-		auth2.signOut().then(function () {
+		auth2.disconnect().then(function () {
 			console.log('User signed out.');
 		});
 	} catch (e) {
@@ -48,7 +57,15 @@ if (window.location.pathname === '/admin') {
 	google.charts.load('current', {'packages': ['corechart']});
 	google.charts.setOnLoadCallback(drawChart);
 }
-
+function getParameterByName(name, url) {
+	if (!url) url = window.location.href;
+	name = name.replace(/[\[\]]/g, "\\$&");
+	var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+		results = regex.exec(url);
+	if (!results) return null;
+	if (!results[2]) return '';
+	return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
 async function drawChart() {
 	var users = await getUsers();
 	console.log(users);

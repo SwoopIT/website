@@ -36,7 +36,8 @@
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/v/dt/dt-1.10.16/b-1.5.1/r-2.2.1/sc-1.4.3/datatables.min.css"/>
     <link rel="stylesheet" href="styles/styles.css">
     <!-- Google Scripts -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119549513-1"></script>
@@ -117,6 +118,10 @@
             $('#bam').show();
             var elems = document.querySelectorAll('.sidenav');
             var instances = M.Sidenav.init(elems);
+        } else {
+        	if (getParameterByName('sign') === 'out') {
+                signOut();
+            }
         }
         if (window.location.pathname === 'admin') {
             google.charts.load('current', {'packages': ['corechart']});

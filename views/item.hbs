@@ -9,25 +9,9 @@
     <li><a href="blacklist" class="black-text">Blacklist Users</a></li>
     <li><a href="/" class="blue-text">Sign Out</a></li>
 </ul>
-<div class="row" style="margin-bottom: 20px; margin-top: 20px">
-    <div class="col s2 hide-on-med-and-down" style="margin-left: 20px;">
-        <ul>
-            <li><h3>Menu</h3></li>
-        </ul>
-        <div class="collection">
-            <a href="admin" class="collection-item blue-text">Admin Home</a>
-            <a class="collection-item active-col blue-text">Add Item</a>
-            <a href="category" class="collection-item blue-text">Add Category</a>
-            <a href="items" class="collection-item blue-text">Items</a>
-            <a href="categories" class="collection-item blue-text">Categories</a>
-            <a href="users" class="blue-text collection-item">Users</a>
-            <a href="blacklist" class="collection-item blue-text">Blacklist Users</a>
-            <a href="/" class="collection-item blue-text">Sign Out</a>
-        </div>
-    </div>
-
-    <div class="container col s10 hide-on-med-and-down" style="margin-left: 10px">
-        <div class="row center">
+<div class="center" style="margin: 20px 20px;">
+    <div class="row col s12" style="margin-top: -7px">
+        <div class="center">
             <h3>Add Item</h3>
             <form onsubmit="return false">
                 <div class="row">
@@ -43,12 +27,12 @@
                 <div class="row">
                     <div class="input-field col s6">
                         <select title="Categories" id="category">
-                            <option value="" disabled selected>Select a Category and Store</option>
+                            <option value="" disabled selected>Select</option>
                         </select>
-                        <label>Category and Store</label>
+                        <label>Select Store</label>
                     </div>
                     <div class="input-field col s6">
-                        <input id="image" type="url" class="validate">
+                        <input id="image" type="url" placeholder="https://example.com/image.png" class="validate">
                         <label for="image">Item Image</label>
                     </div>
                 </div>
@@ -59,54 +43,18 @@
             </form>
         </div>
     </div>
-    <div class="container col s12 show-on-med-and-down hide-on-med-and-up" style="margin-left: 10px">
-        <div class="row center">
-            <div class="container">
-                <h3>Add Item</h3>
-                <form onsubmit="return false">
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <input id="name" type="text" class="validate">
-                            <label for="name">Item Name</label>
-                        </div>
-                        <div class="input-field col s6">
-                            <input id="price" type="text" class="validate">
-                            <label for="price">Item Price</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <select title="Categories" id="category1">
-                                <option value="" disabled selected>Category & Store</option>
-                            </select>
-                            <label>Category and Store</label>
-                        </div>
-                        <div class="input-field col s6">
-                            <input id="image" type="url" class="validate">
-                            <label for="image">Item Image</label>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-large blue white-text"
-                            onclick="addItem($('#name').val(), $('#price').val(), $('#category').val(), $('#image').val())">
-                        Submit
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
 </div>
 <script>
     document.addEventListener('DOMContentLoaded', async function () {
         categories = await getCategories();
         items = await getItems();
+        //TODO figure out why this adds  random stuff to the bottom of the opttions
         for (var i = 0; i < categories.length; i++) {
-            $('#category').append('<optgroup id="category1-' + categories[i].store + '" label="' + storeNames[categories[i].store] + '"></optgroup>');
-            $('#category1').append('<optgroup id="category1-' + categories[i].store + '" label="' + storeNames[categories[i].store] + '"></optgroup>');
+            $('#category').append('<optgroup id="category-' + categories[i].store + '" label="' + storeNames[categories[i].store] + '"></optgroup>');
 
         }
         for (i = 0; i < categories.length; i++) {
             $('#category-' + categories[i].store).append('<option value="' + categories[i].id + '">' + categories[i].name + '</option>');
-            $('#category1-' + categories[i].store).append('<option value="' + categories[i].id + '">' + categories[i].name + '</option>');
 
         }
         var elems = document.querySelectorAll('select');
