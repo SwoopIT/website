@@ -58,7 +58,7 @@
                 } else {
                     toAppend += '<td>' + users[i].devices.android.length + '</td>'
                 }
-                if (users[i].devices.ios[0] == "") {
+                if (users[i].devices.ios[0] === "") {
                     toAppend += '<td>' + 0 + '</td>'
                 } else {
                     toAppend += '<td>' + users[i].devices.ios.length + '</td>'
@@ -82,5 +82,5 @@
 <ul id='user-dropdown' class='dropdown-content'>
     <li><a class="black-text" onclick="window.location.href = encodeURI('/blacklist?email=' + getParameterByName('email'))"><i class="material-icons">block</i>Blacklist</a></li>
     <li><a class="red-text" onclick="alert('This will open a modal and super-confirm with you')"><i class="material-icons">delete_forever</i>Delete User</a></li>
-    <li><a class="blue-text" onclick="alert('This will remove a the blacklist from the user if applicable')"><i class="material-icons">control_point</i>Whitelist</a></li>
+    <li><a class="blue-text" onclick="whitelist(getParameterByName('email'))"><i class="material-icons">control_point</i>Whitelist</a></li>
 </ul>

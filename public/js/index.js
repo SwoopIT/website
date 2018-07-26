@@ -165,6 +165,21 @@ function addCategory(name, store) {
 	})
 }
 
+function whitelist(email) {
+	$.ajax({
+		method: 'delete',
+		url: 'https://api.swoopit.xyz/web/blacklist',
+		data: {
+			email: email,
+		},
+		success: function (res) {
+			if (res === '0') return M.toast({html: 'There was an error adding this DUDE to the whitelist'});
+			M.toast({html: 'The user has been successfully re-added to the whitelist!'})
+		}
+	})
+}
+
+
 function blacklistUser(email, reason) {
 	$.ajax({
 		method: 'post',
