@@ -57,7 +57,7 @@
                         '<td>' + items[i].name + '</td>' +
                         '<td>' + storeNames[getCategory(items[i].category).store] + '</td>' +
                         '<td>' +  items[i].id + '</td>' +
-                        '<td><a class=\'dropdown-trigger btn blue\' onclick="history.pushState(null, null, updateQueryStringParameter(window.location.pathname, \'item-id\', \'' + items[i].id + '\'));" data-target=\'item-dropdown\'>Item Information</a></td>' +
+                        '<td><a class=\'dropdown-trigger btn blue\' onclick="history.pushState(null, null, updateQueryStringParameter(window.location.pathname, \'item-id\', \'' + i + '\'));" data-target=\'item-dropdown\'>Item Info</a></td>' +
                         '</tr>';
 
                 $('#table-body').append(toAppend);
@@ -72,7 +72,34 @@
 </script>
 
 <ul id='item-dropdown' class='dropdown-content'>
-    <li><a class="blue-text" onclick="alert('this will open a modal to edit the item')"><i class="material-icons">edit</i>Edit</a></li>
+    <li><a class="blue-text" onclick="editItem(getParameterByName('item-id'))"><i class="material-icons">edit</i>Edit</a></li>
     <li><a class="red-text" onclick="alert('This will open a modal and super-confirm with you')"><i class="material-icons">delete_forever</i>Delete</a></li>
 
 </ul>
+
+<div id="edit-modal" class="modal">
+    <div class="modal-content">
+      <h4 id="edit-modal-header"></h4>
+      <hr>
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="edit-modal-name" type="text" class="validate">
+          <label for="edit-modal-name">Name</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="edit-modal-price" type="number" class="validate">
+          <label for="edit-modal-price">Price</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="edit-modal-img" type="url" class="validate">
+          <label for="edit-modal-img">Image</label>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a class="waves-effect waves-green btn-flat">Submit</a>
+      <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancel</a>
+    </div>
+  </div>
