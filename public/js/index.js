@@ -141,13 +141,26 @@ function editItem(id) {
 	$('#edit-modal-img').val(item.img);
 	$('#edit-modal-price').val(item.price);
 	$('#edit-modal-submit').click(() => {
-		submitEdit(item)
+		submitEdit(item.id)
 	})
 
 }
 
-function submitEdit(item) {
-	alert("will one day submit an edit for: " + item.name)
+function submitEdit(id) {
+	$.ajax({
+		method: 'post',
+		url: 'https://api.swoopit.xyz/web/edit-item',
+		data: {
+				id: id,
+				name: $('#edit-modal-name').val(),
+				price: $('#edit-modal-price').val(),
+				img: $('#edit-modal-img').val()
+		},
+		success: function (res) {
+			if (res === '0') return M.toast({html: 'There was an error editing this item.'});
+			M.toast({html: 'The item has been successfully edited!'})
+		}
+	})
 }
 
 function getCategory(id) {
