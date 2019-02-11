@@ -191,6 +191,27 @@ function blacklistUser(email, reason) {
 		success: function (res) {
 			if (res === '0') return M.toast({html: 'There was an error adding this user to the blacklist'});
 			M.toast({html: 'The user has been successfully added to the blacklist!'})
+			$('#id').addClass('disabled')
 		}
 	})
+}
+
+function editItem(id) {
+
+}
+
+function deleteItem(id) {
+	if (confirm("Are you 100% sure you want to delete this item?")) {
+		$.ajax({
+			method: 'delete',
+			url: 'https://api.swoopit.xyz/web/item',
+			data: {
+				id: id,
+			},
+			success: function (res) {
+				if (res === '0') return M.toast({html: 'There was an error deleting the item. Please try again'});
+				M.toast({html: 'Item successfully deleted! <br> <small>You will need to reload the page to see changes.</small>'})
+			}
+		})
+	}
 }
