@@ -129,23 +129,25 @@ function addItem(name, price, category, img) {
 }
 
 function editItem(id) {
-	const editModal = document.querySelectorAll('#edit-modal');
-	const instance = M.Modal.init(editModal);
 	let item = items[id];
 	console.log(id);
 	for (let i = 0; i < items.length; i++) {
-		if (items[i].id === id) {
+		if (items[i].id == id) {
 			item = items[i]
 		}
 	}
-	$('#edit-modal-header').text(`Edit ${item.name}`);
+	$('#edit-modal-header').text(`Editing: ${item.name}`);
 	$('#edit-modal-name').val(item.name);
 	$('#edit-modal-img').val(item.img);
 	$('#edit-modal-price').val(item.price);
-	$('#edit-modal-submit').prop('onclick','submitEdit(' + item.id + ')');
+	$('#edit-modal-submit').click(() => {
+		submitEdit(item)
+	})
 
+}
 
-	instance.open();
+function submitEdit(item) {
+	alert("will one day submit an edit for: " + item.name)
 }
 
 function getCategory(id) {

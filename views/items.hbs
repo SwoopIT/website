@@ -51,6 +51,8 @@
         try {
             categories = await getCategories();
             items = await getItems();
+            const editModal = document.querySelectorAll('#edit-modal');
+            const instance = M.Modal.init(editModal);
             var elems = document.querySelectorAll('.sidenav');
             var instances = M.Sidenav.init(elems);
             for (var i = 0; i < items.length; i++) {
@@ -59,7 +61,7 @@
                         '<td>' + storeNames[getCategory(items[i].category).store] + '</td>' +
                         '<td>' + items[i].price + '</td>' +
                         '<td>' +  items[i].id + '</td>' +
-                        '<td><a class=\'dropdown-trigger btn blue\' id="' + items[i].id + '" onclick="history.pushState(null, null, updateQueryStringParameter(window.location.pathname, \'item-id\', \'' + items[i].id + '\'));" data-target=\'item-dropdown\'>Item Information</a></td>' +
+                        '<td><a class=\'dropdown-trigger btn blue\' style="width: 140px;" id="' + items[i].id + '" onclick="history.pushState(null, null, updateQueryStringParameter(window.location.pathname, \'item-id\', \'' + items[i].id + '\'));" data-target=\'item-dropdown\'>Edit</a></td>' +
                         '</tr>';
 
                 $('#table-body').append(toAppend);
@@ -71,10 +73,11 @@
             console.log(e);
         }
     });
+
 </script>
 
 <ul id='item-dropdown' class='dropdown-content'>
-    <li><a class="blue-text" onclick="editItem(getParameterByName('item-id'))"><i class="material-icons">edit</i>Edit</a></li>
+    <li><a class="blue-text modal-trigger" href="#edit-modal" onclick="editItem(getParameterByName('item-id'))"><i class="material-icons">edit</i>Edit</a></li>
     <li><a class="red-text" onclick="deleteItem(getParameterByName('item-id'))"><i class="material-icons">delete_forever</i>Delete</a></li>
 
 </ul>
@@ -85,23 +88,23 @@
       <hr>
       <div class="row">
         <div class="input-field col s6">
-          <input id="edit-modal-name" type="text" class="validate">
+          <input id="edit-modal-name" type="text" placeholder="McFlurryMcDoubleMcMac">
           <label for="edit-modal-name">Name</label>
         </div>
         <div class="input-field col s6">
-          <input id="edit-modal-price" type="number" class="validate">
+          <input id="edit-modal-price" type="number" placeholder="1.99">
           <label for="edit-modal-price">Price</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="edit-modal-img" type="url" class="validate">
+          <input id="edit-modal-img" type="url" placeholder="https://mcdonalds.com/img/mcbigmcmac.png">
           <label for="edit-modal-img">Image</label>
         </div>
       </div>
     </div>
     <div class="modal-footer">
-      <a class="waves-effect waves-green btn-flat">Submit</a>
-      <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancel</a>
+        <a href="#!" class="modal-close waves-effect waves-red btn-flat" style="    border: #868686 1px solid;">Cancel</a>
+        <a id="edit-modal-submit" class="waves-effect waves-green btn-flat">Submit</a>
     </div>
   </div>
