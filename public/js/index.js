@@ -128,6 +128,26 @@ function addItem(name, price, category, img) {
 	})
 }
 
+function editItem(id) {
+	var editModal = document.querySelectorAll('#edit-modal');
+	var instance = M.Modal.init(editModal);
+	let item = items[id];
+	console.log(id);
+	for (var i = 0; i < items.length; i++) {
+		if (items[i].id == id) {
+			item = items[i]
+		}
+	}
+	$('#edit-modal-header').text(`Edit ${item.name}`)
+	$('#edit-modal-name').val(item.name)
+	$('#edit-modal-img').val(item.img)
+	$('#edit-modal-price').val(item.price)
+	$('#edit-modal-submit').prop('onclick','submitEdit(' + item.id + ')')
+
+
+	instance.open();
+}
+
 function getCategory(id) {
 	for (var i = 0; i < categories.length; i++)
 		if (categories[i].id == id)
