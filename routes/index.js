@@ -25,9 +25,12 @@ router.get('/login', function (req, res, next) {
 	res.render('login', {title: 'Login'});
 });
 router.get('/category', function (req, res, next) {
-	res.render('category', {title: 'Category'});
+	res.render('category', {title: 'New Category'});
 });
 router.get('/categories', function (req, res, next) {
 	res.render('categories', {title: 'Categories'});
+});
+router.get('/revenue', function (req, res, next) {
+	res.render('revenue', {title: 'Revenue'});
 });
 module.exports = router;

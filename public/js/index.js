@@ -110,6 +110,10 @@ async function getUsers() {
 	return $.get('https://api.swoopit.xyz/web/users');
 }
 
+async function getOrders() {
+	return $.get('https://api.swoopit.xyz/web/orders');
+}
+
 function addItem(name, price, category, img) {
 	console.log(name, price, category, img);
 	$.ajax({
@@ -173,8 +177,8 @@ function getStore(id) {
 	return storeNames[id]
 }
 
-var categories, items, users;
-var storeNames = {
+let categories, items, users, orders;
+const storeNames = {
 	mcd: 'McDonald\'s',
 	fdl: 'Foodland',
 	dom: 'Dominos',
